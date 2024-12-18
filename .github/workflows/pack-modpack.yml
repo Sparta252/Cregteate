@@ -3,7 +3,7 @@ name: Package Modpack
 on:
   push:
     tags:
-      - '*'  # Spustí sa pri vytvorení tagu (verzie)
+      - '*'  # Spustí sa pri vytvorení tagu
 
 jobs:
   package:
@@ -13,9 +13,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Create Modpack ZIP
+      - name: Create Clean ZIP (without parent folder)
         run: |
-          zip -r modpack.zip bin config mods resources scripts servers.dat
+          mkdir modpack_temp
+          cp -r bin config mods resources scripts servers.dat modpack_temp/
+          cd modpack_temp
+          zip -r ../modpack.zip ./*
 
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v1
