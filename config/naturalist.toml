@@ -1,0 +1,98 @@
+
+#A higher spawn weight will make the mob spawn more often.
+#To prevent a certain mob from spawning, set its weight to 0.
+["Mob Spawn Weights"]
+	#Rabbit Forest Spawn Weight
+	#Range: 0 ~ 1000
+	forestRabbitSpawnWeight = 100
+	#Fox Forest Spawn Weight
+	#Range: 0 ~ 1000
+	forestFoxSpawnWeight = 100
+	#Snail Spawn Weight
+	#Range: 0 ~ 1000
+	snailSpawnWeight = 100
+	#Snake Spawn Weight
+	#Range: 0 ~ 1000
+	snakeSpawnWeight = 100
+	#Coral Snake Spawn Weight
+	#Range: 0 ~ 1000
+	coralSnakeSpawnWeight = 100
+	#Rattlesnake Spawn Weight
+	#Range: 0 ~ 1000
+	rattlesnakeSpawnWeight = 100
+	#Firefly Spawn Weight
+	#Range: 0 ~ 1000
+	fireflySpawnWeight = 100
+	#Bluejay Spawn Weight
+	#Range: 0 ~ 1000
+	bluejaySpawnWeight = 100
+	#Canary Spawn Weight
+	#Range: 0 ~ 1000
+	canarySpawnWeight = 100
+	#Cardinal Spawn Weight
+	#Range: 0 ~ 1000
+	cardinalSpawnWeight = 100
+	#Robin Spawn Weight
+	#Range: 0 ~ 1000
+	robinSpawnWeight = 100
+	#Finch Spawn Weight
+	#Range: 0 ~ 1000
+	finchSpawnWeight = 100
+	#Sparrow Spawn Weight
+	#Range: 0 ~ 1000
+	sparrowSpawnWeight = 100
+	#Butterfly Spawn Weight
+	#Range: 0 ~ 1000
+	butterflySpawnWeight = 100
+	#Duck Spawn Weight
+	#Range: 0 ~ 1000
+	duckSpawnWeight = 100
+	#Bear Spawn Weight
+	#Range: 0 ~ 1000
+	bearSpawnWeight = 100
+	#Deer Spawn Weight
+	#Range: 0 ~ 1000
+	deerSpawnWeight = 100
+	#Rhino Spawn Weight
+	#Range: 0 ~ 1000
+	rhinoSpawnWeight = 100
+	#Lion Spawn Weight
+	#Range: 0 ~ 1000
+	lionSpawnWeight = 100
+	#Elephant Spawn Weight
+	#Range: 0 ~ 1000
+	elephantSpawnWeight = 100
+	#Zebra Spawn Weight
+	#Range: 0 ~ 1000
+	zebraSpawnWeight = 100
+	#Giraffe Spawn Weight
+	#Range: 0 ~ 1000
+	giraffeSpawnWeight = 100
+	#Hippo Spawn Weight
+	#Range: 0 ~ 1000
+	hippoSpawnWeight = 100
+	#Vulture Spawn Weight
+	#Range: 0 ~ 1000
+	vultureSpawnWeight = 100
+	#Boar Spawn Weight
+	#Range: 0 ~ 1000
+	boarSpawnWeight = 100
+	#Dragonfly Spawn Weight
+	#Range: 0 ~ 1000
+	dragonflySpawnWeight = 100
+	#Catfish Spawn Weight
+	#Range: 0 ~ 1000
+	catfishSpawnWeight = 100
+	#Alligator Spawn Weight
+	#Range: 0 ~ 1000
+	alligatorSpawnWeight = 100
+	#Bass Spawn Weight
+	#Range: 0 ~ 1000
+	bassSpawnWeight = 100
+	#Lizard Spawn Weight
+	#Range: 0 ~ 1000
+	lizardSpawnWeight = 100
+	#Tortoise Spawn Weight
+	#Range: 0 ~ 1000
+	tortoiseSpawnWeight = 100
+
