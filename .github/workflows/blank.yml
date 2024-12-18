@@ -1,0 +1,23 @@
+name: Package Modpack
+
+on:
+  push:
+    tags:
+      - '*'  # Spustí sa pri vytvorení tagu (verzie)
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Create Modpack ZIP
+        run: |
+          zip -r modpack.zip bin config mods resources scripts servers.dat
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v1
+        with:
+          files: modpack.zip
