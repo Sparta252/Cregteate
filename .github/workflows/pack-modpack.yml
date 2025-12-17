@@ -13,14 +13,33 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Create Clean ZIP (without parent folder)
+      - name: Create Client and Server ZIPs
         run: |
-          mkdir modpack_temp
-          cp -r bin config mods resources scripts servers.dat modpack_temp/
-          cd modpack_temp
-          zip -r ../modpack.zip ./*
+          # --- PRÍPRAVA KLIENTA ---
+          mkdir modpack_client
+          cp -r bin config mods resources scripts servers.dat modpack_client/
+          cd modpack_client
+          zip -r ../modpack_client.zip ./*
+          cd ..
+
+          # --- PRÍPRAVA SERVERA ---
+          mkdir modpack_server
+          cp -r bin config mods resources scripts servers.dat modpack_server/
+          
+          # Odstránenie grafických módov (vynechá súbory obsahujúce dané názvy)
+          # Používame -f (force), aby script nespadol, ak by náhodou nejaký mód chýbal
+          rm -f modpack_server/mods/*embeddium*
+          rm -f modpack_server/mods/*embedium*
+          rm -f modpack_server/mods/*rubidium*
+          rm -f modpack_server/mods/*oculus*
+          
+          cd modpack_server
+          zip -r ../modpack_server.zip ./*
+          cd ..
 
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v1
         with:
-          files: modpack.zip
+          files: |
+            modpack_client.zip
+            modpack_server.zip
