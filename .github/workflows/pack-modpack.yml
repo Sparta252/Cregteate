@@ -2,8 +2,10 @@ name: Package Modpack
 
 on:
   push:
+    branches:
+      - master  # master branch
     tags:
-      - '*'  # Spustí sa pri vytvorení tagu
+      - '*'   # Stále sa spustí aj pri vytvorení tagu (voliteľné)
 
 jobs:
   package:
@@ -26,12 +28,12 @@ jobs:
           mkdir modpack_server
           cp -r bin config mods resources scripts servers.dat modpack_server/
           
-          # Odstránenie grafických módov (vynechá súbory obsahujúce dané názvy)
-          # Používame -f (force), aby script nespadol, ak by náhodou nejaký mód chýbal
+          # Odstránenie grafických módov a problémového Starlightu
           rm -f modpack_server/mods/*embeddium*
           rm -f modpack_server/mods/*embedium*
           rm -f modpack_server/mods/*rubidium*
           rm -f modpack_server/mods/*oculus*
+          rm -f modpack_server/mods/*starlight*
           
           cd modpack_server
           zip -r ../modpack_server.zip ./*
@@ -40,6 +42,11 @@ jobs:
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v1
         with:
+          # Ak ide o push na main, vytvorí/upraví tag "latest"
+          # Ak ide o tag, použije názov tagu
+          tag_name: ${{ github.ref_type == 'tag' && github.ref_name || 'latest' }}
           files: |
             modpack_client.zip
             modpack_server.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
