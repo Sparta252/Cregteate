@@ -4,10 +4,12 @@
 ![MC Version](https://img.shields.io/badge/Minecraft-1.20.1-brightgreen?style=for-the-badge&logo=minecraft)
 ![Platform](https://img.shields.io/badge/Platform-Technic_Launcher-orange?style=for-the-badge)
 
+
 **Cregteate** je unikátna kombinácia inžinierskeho umenia módu *Create* a technologickej komplexnosti, ktorá posúva hranice automatizácie v Minecraft 1.20.1. Tento repozitár slúži na vývoj, správu konfigurácií a automatické generovanie verzií.
 
 Modpack samotny obsahuje predifovaný oficiálny server, na ktorom je každý vítaný.
 
+***19.12.2025***
 ---
 
 ## 📥 Kde stiahnuť a hrať?
