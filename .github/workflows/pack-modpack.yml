@@ -2,8 +2,8 @@ name: Package Modpack
 
 on:
   push:
-    tags:
-      - '*'  # Spustí sa pri vytvorení tagu
+    branches:
+      - master
 
 jobs:
   package:
@@ -12,15 +12,53 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-      - name: Create Clean ZIP (without parent folder)
+      - name: Extract Version
+        id: build_info
         run: |
-          mkdir modpack_temp
-          cp -r bin config mods resources scripts servers.dat modpack_temp/
-          cd modpack_temp
-          zip -r ../modpack.zip ./*
+          # Získa verziu z commitu (napr. 0.2.1)
+          USER_VER=$(git log -1 --pretty=%B | head -n 1)
+          CLEAN_VER=$(echo "$USER_VER" | tr '[:punct:][:space:]' '-' | tr -s '-' | sed 's/-$//')
+          
+          echo "tag=v$CLEAN_VER" >> $GITHUB_OUTPUT
+          echo "release_name=MC 1.20.1 v$USER_VER" >> $GITHUB_OUTPUT
+
+      - name: Create Client and Server ZIPs
+        run: |
+          # --- KLIENT ---
+          mkdir modpack_client
+          cp -r bin config mods resources kubejs scripts servers.dat modpack_client/
+          rm -rf modpack_client/mods_to_delete
+          cd modpack_client && zip -r ../modpack_client.zip ./* && cd ..
+
+          # --- SERVER ---
+          mkdir modpack_server
+          cp -r bin config mods resources kubejs scripts servers.dat modpack_server/
+          rm -rf modpack_server/mods_to_delete
+          
+          # Vymazanie grafických módov
+          rm -f modpack_server/mods/*embeddium*
+          rm -f modpack_server/mods/*embed_dium*
+          rm -f modpack_server/mods/*embedium*
+          rm -f modpack_server/mods/*rubidium*
+          rm -f modpack_server/mods/*oculus*
+          rm -f modpack_server/mods/*starlight*
+          
+          cd modpack_server && zip -r ../modpack_server.zip ./* && cd ..
 
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v1
         with:
-          files: modpack.zip
+          # Tag: v0.2.1
+          tag_name: ${{ steps.build_info.outputs.tag }}
+          # Názov: MC 1.20.1 v0.2.1
+          name: ${{ steps.build_info.outputs.release_name }}
+          # Ak tag existuje, aktualizuje súbory v ňom
+          overwrite: true
+          files: |
+            modpack_client.zip
+            modpack_server.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
